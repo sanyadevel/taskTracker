@@ -34,12 +34,6 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.differenceTimeList();
-    }, 5000);
-  }
-
   addTask = (newTaskTitle) => {
     const { tasks } = this.state;
     const newTask = {
@@ -123,6 +117,7 @@ class App extends Component {
           removeTask={this.removeTask}
           completeTask={this.completeTask}
           filteredTasks={this.changeFilterCategory}
+          differenceTimeList={this.differenceTimeList}
         />
         <Footer
           tasks={tasks}
