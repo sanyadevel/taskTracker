@@ -41,15 +41,8 @@ class App extends Component {
       isCompleted: false,
       createdDate: new Date(),
     };
-    this.setState({ tasks: [...tasks, newTask] });
-  };
 
-  refreshTheState = () => {
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.map((task) => ({
-        ...task,
-      })),
-    }));
+    this.setState({ tasks: [...tasks, newTask] });
   };
 
   removeTask = (id) => {
@@ -111,7 +104,6 @@ class App extends Component {
           removeTask={this.removeTask}
           completeTask={this.completeTask}
           filteredTasks={this.changeFilterCategory}
-          refreshTheState={this.refreshTheState}
         />
         <Footer
           tasks={tasks}

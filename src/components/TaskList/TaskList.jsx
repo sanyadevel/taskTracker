@@ -8,7 +8,6 @@ function TaskList(props) {
     filteredTasks,
     removeTask,
     completeTask,
-    refreshTheState,
   } = props;
   return (
     <div className="todo-list">
@@ -24,7 +23,6 @@ function TaskList(props) {
               isCompletedCondition={task.isCompleted}
               task={task}
               createdDate={task.createdDate}
-              refreshTheState={refreshTheState}
             />
           ))}
       </ul>
@@ -38,7 +36,6 @@ TaskList.propTypes = {
   filteredTasks: PropTypes.func,
   removeTask: PropTypes.func,
   completeTask: PropTypes.func,
-  refreshTheState: PropTypes.func,
 };
 
 TaskList.defaultProps = {
@@ -47,7 +44,5 @@ TaskList.defaultProps = {
   removeTask: () => {
   },
   completeTask: () => {
-  },
-  refreshTheState: () => {
   },
 };

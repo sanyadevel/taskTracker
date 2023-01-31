@@ -1,63 +1,74 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatDistanceToNow } from 'date-fns';
 
-function Task(props) {
-  useEffect(() => {
-    const { refreshTheState } = props;
+class Task extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      task: [],
+    };
+  }
+
+  componentDidMount() {
     setInterval(() => {
-      refreshTheState();
+      this.setState((prevState) => ({
+        task: [...prevState.task],
+      }));
     }, 5000);
-  });
-  const {
-    taskTitle,
-    removeTask,
-    completeTask,
-    isCompletedCondition,
-    id,
-    createdDate,
-  } = props;
-  const classVariable = classNames('', {
-    ' completed': isCompletedCondition,
-  });
+  }
 
-  const isChecked = !!isCompletedCondition;
+  render() {
+    const {
+      taskTitle,
+      removeTask,
+      completeTask,
+      isCompletedCondition,
+      id,
+      createdDate,
+    } = this.props;
+    const classVariable = classNames('', {
+      ' completed': isCompletedCondition,
+    });
 
-  return (
-    <li
-      className={classVariable}
-      style={{
-        borderBottom: '1px solid #e6e6e6',
-        listStyle: 'none',
-      }}
-    >
-      <div className="view">
-        <input
-          className="toggle "
-          type="checkbox"
-          checked={isChecked}
-          onChange={() => completeTask(id)}
-        />
-        <label htmlFor="taskLabel">
-          <span className="description">{taskTitle}</span>
-          <span className="created">
-            {formatDistanceToNow(createdDate, {
-              includeSeconds: true,
-              addSuffix: true,
-            })}
-          </span>
-        </label>
-        <button className="icon icon-edit" type="button" aria-label="icon-edit" />
-        <button
-          className="icon icon-destroy"
-          onClick={() => removeTask(id)}
-          aria-label="icon-destroy"
-          type="button"
-        />
-      </div>
-    </li>
-  );
+    const isChecked = !!isCompletedCondition;
+
+    return (
+      <li
+        className={classVariable}
+        style={{
+          borderBottom: '1px solid #e6e6e6',
+          listStyle: 'none',
+        }}
+      >
+        <div className="view">
+          <input
+            className="toggle "
+            type="checkbox"
+            checked={isChecked}
+            onChange={() => completeTask(id)}
+          />
+          <label htmlFor="taskLabel">
+            <span className="description">{taskTitle}</span>
+            <span className="created">
+              {formatDistanceToNow(createdDate, {
+                includeSeconds: true,
+                addSuffix: true,
+              })}
+            </span>
+          </label>
+          <button className="icon icon-edit" type="button" aria-label="icon-edit" />
+          <button
+            className="icon icon-destroy"
+            onClick={() => removeTask(id)}
+            aria-label="icon-destroy"
+            type="button"
+          />
+        </div>
+      </li>
+    );
+  }
 }
 
 export default Task;
@@ -69,7 +80,6 @@ Task.propTypes = {
   isCompletedCondition: PropTypes.bool,
   id: PropTypes.string,
   createdDate: PropTypes.instanceOf(Date),
-  refreshTheState: PropTypes.func,
 };
 
 Task.defaultProps = {
@@ -81,6 +91,4 @@ Task.defaultProps = {
   isCompletedCondition: false,
   id: '',
   createdDate: new Date(),
-  refreshTheState: () => {
-  },
 };
