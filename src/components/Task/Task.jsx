@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatDistanceToNow } from 'date-fns';
 
 function Task(props) {
+  useEffect(() => {
+    const { refreshTheState } = props;
+    setInterval(() => {
+      refreshTheState();
+    }, 5000);
+  });
   const {
     taskTitle,
     removeTask,
@@ -34,9 +40,7 @@ function Task(props) {
           onChange={() => completeTask(id)}
         />
         <label htmlFor="taskLabel">
-          <span className="description">
-            {taskTitle}
-          </span>
+          <span className="description">{taskTitle}</span>
           <span className="created">
             {formatDistanceToNow(createdDate, {
               includeSeconds: true,
@@ -45,7 +49,12 @@ function Task(props) {
           </span>
         </label>
         <button className="icon icon-edit" type="button" aria-label="icon-edit" />
-        <button className="icon icon-destroy" onClick={() => removeTask(id)} aria-label="icon-destroy" type="button" />
+        <button
+          className="icon icon-destroy"
+          onClick={() => removeTask(id)}
+          aria-label="icon-destroy"
+          type="button"
+        />
       </div>
     </li>
   );
@@ -60,6 +69,7 @@ Task.propTypes = {
   isCompletedCondition: PropTypes.bool,
   id: PropTypes.string,
   createdDate: PropTypes.instanceOf(Date),
+  refreshTheState: PropTypes.func,
 };
 
 Task.defaultProps = {
@@ -71,4 +81,6 @@ Task.defaultProps = {
   isCompletedCondition: false,
   id: '',
   createdDate: new Date(),
+  refreshTheState: () => {
+  },
 };

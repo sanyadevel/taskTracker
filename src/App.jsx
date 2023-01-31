@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { formatDistanceToNow } from 'date-fns';
 
 import NewTaskForm from './components/NewTaskForm/index';
 import TaskList from './components/TaskList/index';
@@ -45,14 +44,10 @@ class App extends Component {
     this.setState({ tasks: [...tasks, newTask] });
   };
 
-  differenceTimeList = () => {
+  refreshTheState = () => {
     this.setState((prevState) => ({
       tasks: prevState.tasks.map((task) => ({
         ...task,
-        differenceAmountOfTime: formatDistanceToNow(task.createdDate, {
-          includeSeconds: true,
-          addSuffix: true,
-        }),
       })),
     }));
   };
@@ -100,7 +95,6 @@ class App extends Component {
     const { tasks } = this.state;
     const clear = tasks.filter((task) => !task.isCompleted);
     this.setState({ tasks: clear });
-    this.differenceTimeList();
   };
 
   render() {
@@ -117,7 +111,7 @@ class App extends Component {
           removeTask={this.removeTask}
           completeTask={this.completeTask}
           filteredTasks={this.changeFilterCategory}
-          differenceTimeList={this.differenceTimeList}
+          refreshTheState={this.refreshTheState}
         />
         <Footer
           tasks={tasks}
