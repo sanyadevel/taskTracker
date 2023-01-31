@@ -3,6 +3,7 @@
     "browser": true,
     "es2021": true
   },
+  "eslint no-trailing-spaces": ["error", { "skipBlankLines": true }],
   "ignorePatterns": [
     "node_modules",
     "dist",
@@ -31,6 +32,7 @@
   ],
   "rules": {
     "indent": "off",
+    "eslint newline-after-var": ["error", "always"],
     "prettier/prettier": [
       "error",
       {

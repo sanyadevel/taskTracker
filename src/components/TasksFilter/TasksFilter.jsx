@@ -28,7 +28,11 @@ function TasksFilter(props) {
     const selectedButtonClass = classNames('', { ' selected': isActive });
     return (
       <li key={button.label}>
-        <button className={selectedButtonClass} onClick={() => filterChangeHandle(button.name)} type="button">
+        <button
+          className={selectedButtonClass}
+          onClick={() => filterChangeHandle(button.name)}
+          type="button"
+        >
           {button.label}
         </button>
       </li>
