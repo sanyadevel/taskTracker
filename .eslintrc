@@ -3,12 +3,8 @@
     "browser": true,
     "es2021": true
   },
-  "eslint no-trailing-spaces": ["error", { "skipBlankLines": true }],
-  "ignorePatterns": [
-    "node_modules",
-    "dist",
-    "build"
-  ],
+  "eslint no-trailing-spaces": ["error", { "skipBlankLines": false }],
+  "ignorePatterns": ["node_modules", "dist", "build"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -25,11 +21,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "import"
-  ],
+  "plugins": ["react", "prettier", "import"],
   "rules": {
     "indent": "off",
     "eslint newline-after-var": ["error", "always"],
@@ -42,36 +34,28 @@
     "linebreak-style": 0,
     "no-tabs": "off",
     "no-alert": "off",
-    "quotes": [
-      "error",
-      "single"
+    "quotes": ["error", "single"],
+    "jsx-a11y/control-has-associated-label": [
+      2,
+      {
+        "labelAttributes": ["label"],
+        "controlComponents": ["CustomComponent"],
+        "ignoreElements": ["audio", "canvas", "embed", "input", "textarea", "tr", "video"],
+        "ignoreRoles": [
+          "grid",
+          "listbox",
+          "menu",
+          "menubar",
+          "radiogroup",
+          "row",
+          "tablist",
+          "toolbar",
+          "tree",
+          "treegrid"
+        ],
+        "depth": 3
+      }
     ],
-    "jsx-a11y/control-has-associated-label": [ 2, {
-      "labelAttributes": ["label"],
-      "controlComponents": ["CustomComponent"],
-      "ignoreElements": [
-        "audio",
-        "canvas",
-        "embed",
-        "input",
-        "textarea",
-        "tr",
-        "video"
-      ],
-      "ignoreRoles": [
-        "grid",
-        "listbox",
-        "menu",
-        "menubar",
-        "radiogroup",
-        "row",
-        "tablist",
-        "toolbar",
-        "tree",
-        "treegrid"
-      ],
-      "depth": 3
-    }],
     "react/button-has-type": [
       "enabled",
       {
@@ -86,10 +70,7 @@
         "ignoreNonDOM": true
       }
     ],
-    "semi": [
-      "error",
-      "always"
-    ],
+    "semi": ["error", "always"],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
     "import/no-unresolved": [
@@ -107,23 +88,13 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "import/order": [
       2,
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
         "newlines-between": "always"
       }
     ]
@@ -131,16 +102,8 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ],
-        "moduleDirectory": [
-          "node_modules",
-          "src/"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
       }
     }
   }

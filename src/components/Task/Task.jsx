@@ -24,15 +24,13 @@ class Task extends Component {
       taskTitle,
       removeTask,
       completeTask,
-      isCompletedCondition,
-      id,
+      isTaskCompleted,
       createdDate,
     } = this.props;
     const classVariable = classNames('', {
-      ' completed': isCompletedCondition,
+      ' completed': isTaskCompleted,
     });
-
-    const isChecked = !!isCompletedCondition;
+    const isChecked = !!isTaskCompleted;
 
     return (
       <li
@@ -47,7 +45,7 @@ class Task extends Component {
             className="toggle "
             type="checkbox"
             checked={isChecked}
-            onChange={() => completeTask(id)}
+            onChange={completeTask}
           />
           <label htmlFor="taskLabel">
             <span className="description">{taskTitle}</span>
@@ -61,7 +59,7 @@ class Task extends Component {
           <button className="icon icon-edit" type="button" aria-label="icon-edit" />
           <button
             className="icon icon-destroy"
-            onClick={() => removeTask(id)}
+            onClick={removeTask}
             aria-label="icon-destroy"
             type="button"
           />
@@ -71,14 +69,11 @@ class Task extends Component {
   }
 }
 
-export default Task;
-
 Task.propTypes = {
   taskTitle: PropTypes.string,
   removeTask: PropTypes.func,
   completeTask: PropTypes.func,
-  isCompletedCondition: PropTypes.bool,
-  id: PropTypes.string,
+  isTaskCompleted: PropTypes.bool,
   createdDate: PropTypes.instanceOf(Date),
 };
 
@@ -88,7 +83,8 @@ Task.defaultProps = {
   },
   completeTask: () => {
   },
-  isCompletedCondition: false,
-  id: '',
+  isTaskCompleted: false,
   createdDate: new Date(),
 };
+
+export default Task;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NewTaskForm() {
+function Header() {
   return (
     <header className="header">
       <h1 className="mt-4">Todos</h1>
@@ -8,4 +8,4 @@ function NewTaskForm() {
   );
 }
 
-export default NewTaskForm;
+export default Header;

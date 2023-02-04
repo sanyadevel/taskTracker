@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
-import NewTaskForm from './components/NewTaskForm/index';
 import TaskList from './components/TaskList/index';
+import Header from './components/Header';
 import NewTaskInput from './components/NewTaskInput/NewTaskInput';
 import Footer from './components/Footer/index';
 
@@ -13,19 +12,19 @@ class App extends Component {
         {
           taskTitle: 'Completed task',
           id: crypto.randomUUID(),
-          isCompleted: false,
+          isTaskCompleted: false,
           createdDate: new Date(),
         },
         {
           taskTitle: 'Editing task',
           id: crypto.randomUUID(),
-          isCompleted: false,
+          isTaskCompleted: false,
           createdDate: new Date(),
         },
         {
           taskTitle: 'Active task',
           id: crypto.randomUUID(),
-          isCompleted: false,
+          isTaskCompleted: false,
           createdDate: new Date(),
         },
       ],
@@ -38,7 +37,7 @@ class App extends Component {
     const newTask = {
       taskTitle: newTaskTitle,
       id: crypto.randomUUID(),
-      isCompleted: false,
+      isTaskCompleted: false,
       createdDate: new Date(),
     };
 
@@ -47,6 +46,7 @@ class App extends Component {
 
   removeTask = (id) => {
     const { tasks } = this.state;
+
     this.setState({ tasks: tasks.filter((task) => task.id !== id) });
   };
 
@@ -56,7 +56,7 @@ class App extends Component {
         if (task.id === id) {
           return {
             ...task,
-            isCompleted: !task.isCompleted,
+            isTaskCompleted: !task.isTaskCompleted,
           };
         }
         return task;
@@ -74,11 +74,12 @@ class App extends Component {
       tasks,
       filter,
     } = this.state;
+
     switch (filter) {
       case 'ACTIVE':
-        return tasks.filter((task) => !task.isCompleted);
+        return tasks.filter((task) => !task.isTaskCompleted);
       case 'COMPLETED':
-        return tasks.filter((task) => task.isCompleted);
+        return tasks.filter((task) => task.isTaskCompleted);
       default:
         return tasks; // for ALL
     }
@@ -86,7 +87,8 @@ class App extends Component {
 
   clearAllTasks = () => {
     const { tasks } = this.state;
-    const clear = tasks.filter((task) => !task.isCompleted);
+    const clear = tasks.filter((task) => !task.isTaskCompleted);
+
     this.setState({ tasks: clear });
   };
 
@@ -95,9 +97,10 @@ class App extends Component {
       tasks,
       filter,
     } = this.state;
+
     return (
       <section className="todoapp">
-        <NewTaskForm />
+        <Header />
         <NewTaskInput addTask={this.addTask} />
         <TaskList
           tasks={tasks}

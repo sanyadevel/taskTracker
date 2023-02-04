@@ -23,14 +23,13 @@ function Footer(props) {
   );
 }
 
-export default Footer;
-
 Footer.propTypes = {
   filterChangeHandle: PropTypes.func,
   clearAllTasks: PropTypes.func,
   tasks: PropTypes.arrayOf(PropTypes.shape({})),
   filter: PropTypes.string,
 };
+
 Footer.defaultProps = {
   filterChangeHandle: () => {
   },
@@ -39,3 +38,5 @@ Footer.defaultProps = {
   tasks: [],
   filter: '',
 };
+
+export default Footer;

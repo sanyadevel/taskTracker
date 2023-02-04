@@ -9,18 +9,18 @@ function TaskList(props) {
     removeTask,
     completeTask,
   } = props;
+
   return (
     <div className="todo-list">
       <ul className="p-0 m-0">
         {filteredTasks()
           .map((task) => (
             <Task
-              removeTask={removeTask}
-              completeTask={completeTask}
+              removeTask={() => removeTask(task.id)}
+              completeTask={() => completeTask(task.id)}
               key={task.id}
               taskTitle={task.taskTitle}
-              id={task.id}
-              isCompletedCondition={task.isCompleted}
+              isTaskCompleted={task.isTaskCompleted}
               task={task}
               createdDate={task.createdDate}
             />
@@ -29,8 +29,6 @@ function TaskList(props) {
     </div>
   );
 }
-
-export default TaskList;
 
 TaskList.propTypes = {
   filteredTasks: PropTypes.func,
@@ -46,3 +44,5 @@ TaskList.defaultProps = {
   completeTask: () => {
   },
 };
+
+export default TaskList;

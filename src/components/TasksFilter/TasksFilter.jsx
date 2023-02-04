@@ -9,7 +9,7 @@ function TasksFilter(props) {
     tasks,
     filter,
   } = props;
-  const taskCounter = tasks.filter((task) => !task.isCompleted);
+  const taskCounter = tasks.filter((task) => !task.isTaskCompleted);
   const buttons = [
     {
       name: 'ALL',
@@ -26,6 +26,7 @@ function TasksFilter(props) {
   ].map((button) => {
     const isActive = filter === button.name;
     const selectedButtonClass = classNames('', { ' selected': isActive });
+
     return (
       <li key={button.label}>
         <button
@@ -38,6 +39,7 @@ function TasksFilter(props) {
       </li>
     );
   });
+
   return (
     <footer className="footer h-25">
       <span className="todo-count">
@@ -51,8 +53,6 @@ function TasksFilter(props) {
     </footer>
   );
 }
-
-export default TasksFilter;
 
 TasksFilter.propTypes = {
   filterChangeHandle: PropTypes.func,
@@ -69,3 +69,5 @@ TasksFilter.defaultProps = {
   tasks: [],
   filter: '',
 };
+
+export default TasksFilter;

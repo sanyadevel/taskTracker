@@ -10,17 +10,22 @@ class NewTaskInput extends Component {
   onInputChangeHandler = (e) => {
     const { addTask } = this.props;
     const { taskInputValue } = this.state;
+
     if (e.key === 'Enter' && e.target.value.trim() !== '') {
       addTask(taskInputValue);
-      e.target.value = '';
+
+      this.setState({ taskInputValue: '' });
     }
   };
 
   render() {
+    const { taskInputValue } = this.state;
+
     return (
       <input
         className="new-todo "
         placeholder="What needs to be done?"
+        value={taskInputValue}
         onKeyUp={this.onInputChangeHandler}
         onChange={(e) => this.setState({ taskInputValue: e.target.value })}
       />
@@ -28,10 +33,11 @@ class NewTaskInput extends Component {
   }
 }
 
-export default NewTaskInput;
-
 NewTaskInput.propTypes = { addTask: PropTypes.func };
+
 NewTaskInput.defaultProps = {
   addTask: () => {
   },
 };
+
+export default NewTaskInput;
