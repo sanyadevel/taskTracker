@@ -44,6 +44,7 @@ function TasksFilter(props) {
     <footer className="footer h-25">
       <span className="todo-count">
         {taskCounter.length}
+        {' '}
         items left
       </span>
       <ul className="filters">{buttons}</ul>
