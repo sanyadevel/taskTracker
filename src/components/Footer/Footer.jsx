@@ -26,7 +26,7 @@ function Footer(props) {
     },
   ].map((button) => {
     const isActive = filter === button.name;
-    const selectedButtonClass = classNames('', { ' selected': isActive });
+    const selectedButtonClass = classNames('', { selected: isActive });
 
     return (
       <li key={button.label}>
@@ -44,9 +44,7 @@ function Footer(props) {
   return (
     <footer className="footer h-25">
       <span className="todo-count">
-        {taskCounter.length}
-        {' '}
-        items left
+        {`${taskCounter.length} items left`}
       </span>
       <ul className="filters">{buttons}</ul>
       <button className="clear-completed" onClick={clearAllTasks} type="button">
